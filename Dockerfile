@@ -1,5 +1,5 @@
 FROM java:8-jre
-MAINTAINER Jonathon Leight <jonathon.leight@jleight.com>
+LABEL maintainer="Jonathon Leight <jonathon.leight@jleight.com>"
 
 ENV JAVA_HOME     /usr/lib/jvm/java-8-openjdk-amd64
 
