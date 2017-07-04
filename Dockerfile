@@ -24,6 +24,7 @@ RUN curl -kL -O "https://github.com/OpenTSDB/opentsdb/releases/download/v2.4.0RC
 RUN set -x \
   && apt-get update \
   && apt-get install -y \
+    gnuplot \ 
     curl \
     supervisor \
   && apt-get clean \
@@ -42,5 +43,11 @@ ADD hbase-service.sh /opt/hbase-service.sh
 ADD opentsdb-service.sh /opt/opentsdb-service.sh
 
 EXPOSE 4242
+EXPOSE 8070
+EXPOSE 60000
+EXPOSE 60010
+EXPOSE 60020
+EXPOSE 60030
+
 VOLUME ["${HBASE_DATA}"]
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
