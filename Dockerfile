@@ -33,7 +33,7 @@ RUN set -x \
     /var/tmp/* 
   
 RUN mkdir -p "${HBASE_HOME}" "${HBASE_DATA}" 
-RUN curl -kL "${HBASE_URL}" | tar -xz -C "${HBASE_HOME}" --strip-components=1 
+RUN curl -kL http://apache.org/dist/hbase/stable/hbase-1.2.6-bin.tar.gz | tar -xz -C "${HBASE_HOME}" --strip-components=1 
 
 RUN dpkg -i "${OTSDB_PACKAGE}" \
   && rm "${OTSDB_PACKAGE}"
