@@ -3,7 +3,7 @@ LABEL maintainer="Mirko Kämpf <mirko.kaempf@gmail.com>"
 
 ENV JAVA_HOME     /usr/lib/jvm/java-8-openjdk-amd64
 
-ENV HBASE_VERSION 1.2.6
+ENV HBASE_VERSION 1.4.9
 ENV HBASE_BASEURL http://apache.org/dist/hbase/stable
 ENV HBASE_PACKAGE hbase-${HBASE_VERSION}-bin.tar.gz
 ENV HBASE_URL     ${HBASE_BASEURL}/${HBASE_PACKAGE}
@@ -34,8 +34,8 @@ RUN set -x \
     /var/tmp/* 
   
 RUN mkdir -p "${HBASE_HOME}" "${HBASE_DATA}" 
-RUN curl -kL http://apache.org/dist/hbase/stable/hbase-1.2.6-bin.tar.gz -o hbase-1.2.6-bin.tar.gz
-RUN tar -xz hbase-1.2.6-bin.tar.gz -C "${HBASE_HOME}" --strip-components=1 
+RUN curl -kL http://apache.org/dist/hbase/stable/hbase-1.4.9-bin.tar.gz -o hbase-1.4.9-bin.tar.gz
+RUN tar -xz hbase-1.4.9-bin.tar.gz -C "${HBASE_HOME}" --strip-components=1 
 
 RUN dpkg -i "${OTSDB_PACKAGE}" \
   && rm "${OTSDB_PACKAGE}"
