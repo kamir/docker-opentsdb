@@ -1,5 +1,5 @@
 FROM java:8-jre
-LABEL maintainer="Jonathon Leight <jonathon.leight@jleight.com>"
+LABEL maintainer="Mirko Kämpf <mirko.kaempf@gmail.com>"
 
 ENV JAVA_HOME     /usr/lib/jvm/java-8-openjdk-amd64
 
@@ -10,7 +10,7 @@ ENV HBASE_URL     ${HBASE_BASEURL}/${HBASE_PACKAGE}
 ENV HBASE_HOME    /opt/hbase
 ENV HBASE_DATA    /var/opt/hbase
 
-ENV OTSDB_VERSION 2.4.0RC1
+ENV OTSDB_VERSION 2.4.0
 ENV OTSDB_GITHUB  https://github.com/OpenTSDB/opentsdb
 ENV OTSDB_BASEURL ${OTSDB_GITHUB}/releases/download/v${OTSDB_VERSION}
 ENV OTSDB_PACKAGE opentsdb-${OTSDB_VERSION}_all.deb
@@ -19,11 +19,12 @@ ENV COMPRESSION   NONE
 
 RUN echo ${OTSDB_URL}
 RUN echo ${HBASE_URL}
-RUN curl -kL -O "https://github.com/OpenTSDB/opentsdb/releases/download/v2.4.0RC1/opentsdb-2.4.0RC1_all.deb"
+RUN curl -kL -O "https://github.com/OpenTSDB/opentsdb/releases/download/v2.4.0/opentsdb-2.4.0_all.deb"
 
 RUN set -x \
   && apt-get update \
   && apt-get install -y \
+    telnet telnet-server \
     gnuplot \ 
     curl \
     supervisor \
