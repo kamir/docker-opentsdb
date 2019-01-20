@@ -18,7 +18,6 @@ ENV OTSDB_URL     ${OTSDB_BASEURL}/${OTSDB_PACKAGE}
 ENV COMPRESSION   NONE
 
 RUN echo ${OTSDB_URL}
-RUN echo ${HBASE_URL}
 RUN curl -kL -O "https://github.com/OpenTSDB/opentsdb/releases/download/v2.4.0/opentsdb-2.4.0_all.deb"
 
 RUN set -x \
@@ -33,9 +32,13 @@ RUN set -x \
     /tmp/* \
     /var/tmp/* 
   
+RUN echo ${HBASE_HOME}
+RUN echo ${HBASE_DATA}
 RUN mkdir -p "${HBASE_HOME}" "${HBASE_DATA}" 
+
+RUN echo ${HBASE_URL}
 RUN curl -kL http://apache.org/dist/hbase/stable/hbase-1.4.9-bin.tar.gz -o hbase-1.4.9-bin.tar.gz
-RUN tar -xz hbase-1.4.9-bin.tar.gz -C "${HBASE_HOME}" --strip-components=1 
+RUN tar -xzf hbase-1.4.9-bin.tar.gz -C "${HBASE_HOME}" --strip-components=1 
 
 RUN dpkg -i "${OTSDB_PACKAGE}" \
   && rm "${OTSDB_PACKAGE}"
