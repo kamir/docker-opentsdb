@@ -24,7 +24,7 @@ RUN curl -kL -O "https://github.com/OpenTSDB/opentsdb/releases/download/v2.4.0/o
 RUN set -x \
   && apt-get update \
   && apt-get install -y \
-    telnet telnet-server \
+    telnet \
     gnuplot \ 
     curl \
     supervisor \
